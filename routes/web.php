@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OpinionController;
+use App\Http\Controllers\ThemeController;
+use App\Http\Controllers\ReferenceController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +19,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::Resource('opinions',OpinionController::class);
+Route::Resource('references',ReferenceController::class);
+Route::Resource('roles',RoleController::class);
+Route::Resource('states',StateController::class);
+Route::Resource('themes',ThemeController::class);
