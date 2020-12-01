@@ -16,7 +16,7 @@ class ThemeController extends Controller
     {
         $themes = Theme::all();
 
-        return view ('themes.index');
+        return view ('themes.index')->with(compact('themes'));
     }
 
     /**
