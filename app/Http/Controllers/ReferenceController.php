@@ -66,7 +66,8 @@ class ReferenceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $reference = Reference::find($id);
+        return view ('references.update')->with(compact('reference'));
     }
 
     /**
