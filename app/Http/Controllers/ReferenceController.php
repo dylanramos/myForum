@@ -26,7 +26,8 @@ class ReferenceController extends Controller
      */
     public function create()
     {
-        //
+        $reference = new Reference();
+        return view ('references.create')->with(compact('reference'));
     }
 
     /**
