@@ -96,6 +96,9 @@ class ReferenceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $reference = Reference::find($id);
+        $reference->delete();
+
+        return redirect(route('references.index'))->with('message','Référence supprimée');
     }
 }
