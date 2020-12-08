@@ -79,7 +79,13 @@ class ReferenceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $reference = Reference::find($id);
+        $reference->description = $request->input('description');
+        $reference->url = $request->input('url');
+        $reference->save();
+        $request->session()->flash('message',"Modification enregistrée");
+
+        return view ('references.show')->with(compact('reference'));
     }
 
     /**
