@@ -83,7 +83,7 @@ class ReferenceController extends Controller
         $reference->description = $request->input('description');
         $reference->url = $request->input('url');
         $reference->save();
-        
+
         return redirect(route('references.show',$id))->with('message','Référence modifiée');
     }
 
