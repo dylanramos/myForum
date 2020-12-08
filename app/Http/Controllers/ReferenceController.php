@@ -83,9 +83,8 @@ class ReferenceController extends Controller
         $reference->description = $request->input('description');
         $reference->url = $request->input('url');
         $reference->save();
-        $request->session()->flash('message',"Modification enregistrée");
-
-        return view ('references.show')->with(compact('reference'));
+        
+        return redirect(route('references.show',$id))->with('message','Référence modifiée');
     }
 
     /**
