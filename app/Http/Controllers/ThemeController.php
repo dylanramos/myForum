@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reference;
 use Illuminate\Http\Request;
 use App\Models\Theme;
 
@@ -48,7 +49,8 @@ class ThemeController extends Controller
      */
     public function show($id)
     {
-        //
+        $theme = Theme::find($id);
+        return view ('themes.show')->with(compact('theme'));
     }
 
     /**
