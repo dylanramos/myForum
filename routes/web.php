@@ -7,6 +7,7 @@ use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\ReferenceController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\TopicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,4 @@ Route::Resource('references',ReferenceController::class);
 Route::Resource('roles',RoleController::class);
 Route::Resource('states',StateController::class);
 Route::Resource('themes',ThemeController::class);
+Route::resource('topics', TopicController::class);
