@@ -15,4 +15,14 @@ class Opinion extends Model
     {
         return $this->belongsTo(Opinion::class);
     }
+
+    public function references()
+    {
+        return $this->belongsToMany(Reference::class);
+    }
+
+    public function forumuser()
+    {
+        return $this->belongsTo(ForumUser::class);
+    }
 }
