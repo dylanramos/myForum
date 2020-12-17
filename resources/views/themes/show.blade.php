@@ -5,6 +5,7 @@
     @foreach ($theme->topics as $topic)
         <div class="border border-dark p-2">
             <a href="">{{ $topic->description }}</a>
+            <span class="badge badge-light float-right">{{ $topic->opinions->count() }}</span>
         </div>
     @endforeach
 @endsection
