@@ -20,4 +20,9 @@ class Topic extends Model
     {
         return $this->hasMany(Opinion::class);
     }
+
+    public function forumuser()
+    {
+        return $this->belongsTo(ForumUser::class);
+    }
 }
