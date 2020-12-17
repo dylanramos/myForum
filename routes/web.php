@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\ReferenceController;
@@ -18,9 +19,7 @@ use App\Http\Controllers\StateController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::Resource('opinions',OpinionController::class);
 Route::Resource('references',ReferenceController::class);
