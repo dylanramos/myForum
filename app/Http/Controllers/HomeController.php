@@ -10,6 +10,6 @@ class HomeController extends Controller
     static function index()
     {
         $themes = Theme::all();
-        return view('home')->with(compact('themes'));
+        return view('welcome')->with(compact('themes'));
     }
 }
