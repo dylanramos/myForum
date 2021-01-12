@@ -1,13 +1,9 @@
 @extends ('layout')
 
 @section ('content')
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-            </a>
-        </x-slot>
-
-        <!-- Validation Errors -->
+<div class="container w-50 border p-5 mt-5">
+        <h1 class="text-center mb-3">Register</h1>
+    <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors"/>
 
         <form method="POST" action="{{ route('register') }}">
@@ -65,10 +61,10 @@
                     Déjà enregistré ?
                 </a>
 
-                <x-button class="ml-4">
+                <x-button class="ml-4 bg-primary">
                     S'enregistrer
                 </x-button>
             </div>
         </form>
-    </x-auth-card>
+        </div>
 @endsection
