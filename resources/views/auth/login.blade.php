@@ -1,9 +1,9 @@
 @extends ('layout')
 
-@section ('content')
-<div class="container w-50 border p-5 mt-5">
-<h1 class="text-center mb-3">Login</h1>
-    <!-- Session Status -->
+@section('content')
+    <div class="container w-50 border p-5 mt-5">
+        <h1 class="text-center mb-3">Login</h1>
+        <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <!-- Validation Errors -->
@@ -16,23 +16,23 @@
             <div>
                 <label for="email">Email</label>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
+                    autofocus />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
                 <label for="password">Mot de passe</label>
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                    autocomplete="current-password" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
                     <div>
-                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                            href="{{ route('password.request') }}">
                             Mot de passe oublié ?
                         </a><br>
                         <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
@@ -46,5 +46,5 @@
                 </x-button>
             </div>
         </form>
-        </div>
+    </div>
 @endsection
