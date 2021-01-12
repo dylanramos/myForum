@@ -21,8 +21,13 @@ class Opinion extends Model
         return $this->belongsToMany(Reference::class);
     }
 
-    public function forumuser()
+    public function user()
     {
-        return $this->belongsTo(ForumUser::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function comments() 
+    {
+        return $this->belongsToMany(User::class, 'user_opinion')->withPivot('comment', 'points');
     }
 }
