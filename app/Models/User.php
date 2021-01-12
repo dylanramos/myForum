@@ -11,15 +11,20 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public $timestamps = false; // To disable the created_at and updated_at default columns
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name',
+        'pseudo',
+        'first_name',
+        'last_name',
         'email',
         'password',
+        'role_id'
     ];
 
     /**
