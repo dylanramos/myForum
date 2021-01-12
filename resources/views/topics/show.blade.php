@@ -25,10 +25,23 @@
                 <div class="small ml-3">
                     <div>
                         @foreach ($opinion->comments as $comment)
-                            <div class="p-1">{{ $comment->pseudo }} : {{ $comment->pivot->comment }}, {{ $comment->pivot->points }}</div>
+                            <div class="p-1">{{ $comment->pseudo }} : {{ $comment->pivot->comment }},
+                                {{ $comment->pivot->points }}
+                            </div>
                         @endforeach
                     </div>
                 </div>
+            @endif
+            @if (Auth::user())
+            <form method="post" action="{{ route('opinions.comment') }}">
+                @csrf
+                <div class="small ml-3">
+                    Commentaire: <textarea name="newcomment"></textarea>
+                    Points: <input type="number" name="points" min="-1" max="1">
+                    <input type="hidden" name="opinionid" value="{{ $opinion->id }}">
+                    <input type="submit" name="submit" value="Ok" class="btn btn-sucess">
+                </div>
+            </form>
             @endif
         </div>
     @empty
