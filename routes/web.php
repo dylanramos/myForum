@@ -22,16 +22,14 @@ use App\Http\Controllers\TopicController;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::Resource('opinions',OpinionController::class);
-Route::post('opinions/comment', [OpinionController::class, 'newComment'])->name('opinions.comment');
-Route::Resource('references',ReferenceController::class);
-Route::Resource('roles',RoleController::class);
-Route::Resource('states',StateController::class);
-Route::Resource('themes',ThemeController::class);
-Route::resource('topics', TopicController::class);
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::Resource('opinions', OpinionController::class);
+    Route::post('opinions/comment/', [OpinionController::class, 'newComment'])->name('opinions.comment');
+    Route::Resource('references', ReferenceController::class);
+    Route::Resource('roles', RoleController::class);
+    Route::Resource('states', StateController::class);
+    Route::Resource('themes', ThemeController::class);
+    Route::Resource('topics', TopicController::class);
+});
 
 require __DIR__.'/auth.php';
