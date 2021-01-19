@@ -89,8 +89,8 @@ class OpinionController extends Controller
      */
     public function newComment(Request $request)
     {
-        $opinion = Opinion::find($request->input('opinionid'));
-        $opinion->comments()->attach(Auth::user(), ['comment' => $request->input('newcomment'), 'points' => $request->input('points')]);
-        return redirect(route('topics.show', $opinion->topic))->with('message', 'Commentaire ajouté');
+        $opinion = Opinion::find($request->input('opinion'));
+        $opinion->comments()->attach(Auth::user(),['comment' => $request->input('newcomm'),'points' => $request->input('points')]);
+        return redirect(route('topics.show',$opinion->topic))->with('message','Commentaire enregistré');
     }
 }
