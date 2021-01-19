@@ -32,19 +32,38 @@
                     </div>
                 </div>
             @endif
-            @if (Auth::user())
-            <form method="post" action="{{ route('opinions.comment') }}">
-                @csrf
-                <div class="small ml-3">
-                    Commentaire: <textarea name="newcomment"></textarea>
-                    Points: <input type="number" name="points" min="-1" max="1">
-                    <input type="hidden" name="opinionid" value="{{ $opinion->id }}">
-                    <input type="submit" name="submit" value="Ok" class="btn btn-sucess">
+            @if (Auth::user()->can('comment',\App\Models\Opinion::class) || Auth::user()->can('commentOpinion',$opinion,\App\Models\Opinion::class))
+                <div id="accordionnew{{ $opinion->id }}">
+                    <button class="btn btn-sm ml-3 p-1" data-toggle="collapse" data-target="#collapsenew{{ $opinion->id }}" aria-expanded="true" aria-controls="collapsenew{{ $opinion->id }}">
+                        <li class="fa fa-plus-square">
+                    </button>
+                    <div id="collapsenew{{ $opinion->id }}" class="collapse" data-parent="#accordionnew{{ $opinion->id }}">
+                        <form action="{{ route('opinions.comment') }}" method="post">
+                            @csrf
+                            <div class="row">
+                                <label class="form-control col-2 text-right border-0">Commentaire</label>
+                                <textarea class="form-control col-10" name="newcomm"></textarea><br>
+                            </div>
+                            <div class="row">
+                                <label class="form-control col-2 text-right border-0">Points</label>
+                                <input class="form-control col-1" type="number" max="1" min="-1" name="points">
+                            </div>
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-2">
+                                    <button class="btn btn-success btn-sm" type="submit">Envoyer</button>
+                                </div>
+                            </div>
+                            <input type="hidden" name="opinion" value="{{ $opinion->id }}">
+                        </form>
+                    </div>
                 </div>
-            </form>
             @endif
         </div>
     @empty
         <p>(Aucune opinion n'a été soumise pour l'instant sur ce sujet)</p>
     @endforelse
+    @cannot('comment',\App\Models\Opinion::class)
+        <p class="small light-blue-text mt-5">Vous n'avez pas encore posté assez d'opinions ({{ Auth::user()->opinions->count() }}) pour être autorisé à commenter des opinions où vous n'êtes pas nommément cité</p>
+    @endcannot
 @endsection
