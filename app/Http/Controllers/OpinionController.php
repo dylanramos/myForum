@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Opinion;
+use App\Rules\ElaboratedComment;
 use Illuminate\Http\Request;
 
 class OpinionController extends Controller
@@ -90,7 +91,8 @@ class OpinionController extends Controller
     public function newComment(Request $request)
     {
         $validated = $request->validate([
-            'newcomm' => 'required|min:25'
+            'newcomm' => 'required|min:25',
+            'newcomm' => new ElaboratedComment()
         ]);
         $opinion = Opinion::find($request->input('opinion'));
         $opinion->comments()->attach(Auth::user(),['comment' => $request->input('newcomm'),'points' => $request->input('points')]);
