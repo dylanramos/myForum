@@ -1,6 +1,15 @@
 @extends ('layout')
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <h3 class="p-2">Discussion autour du sujet "{{ $topic->description }}" dans le cadre du thème {{ $topic->theme->name }}:
     </h3>
     <div class="small mb-3">Proposé par {{ $topic->user->pseudo }}</div>
@@ -32,9 +41,10 @@
                     </div>
                 </div>
             @endif
-            @if (Auth::user()->can('comment',\App\Models\Opinion::class) || Auth::user()->can('commentOpinion',$opinion,\App\Models\Opinion::class))
+            @if (Auth::user()->can('comment', \App\Models\Opinion::class) || Auth::user()->can('commentOpinion', $opinion, \App\Models\Opinion::class))
                 <div id="accordionnew{{ $opinion->id }}">
-                    <button class="btn btn-sm ml-3 p-1" data-toggle="collapse" data-target="#collapsenew{{ $opinion->id }}" aria-expanded="true" aria-controls="collapsenew{{ $opinion->id }}">
+                    <button class="btn btn-sm ml-3 p-1" data-toggle="collapse" data-target="#collapsenew{{ $opinion->id }}"
+                        aria-expanded="true" aria-controls="collapsenew{{ $opinion->id }}">
                         <li class="fa fa-plus-square">
                     </button>
                     <div id="collapsenew{{ $opinion->id }}" class="collapse" data-parent="#accordionnew{{ $opinion->id }}">
@@ -64,6 +74,8 @@
         <p>(Aucune opinion n'a été soumise pour l'instant sur ce sujet)</p>
     @endforelse
     @cannot('comment',\App\Models\Opinion::class)
-        <p class="small light-blue-text mt-5">Vous n'avez pas encore posté assez d'opinions ({{ Auth::user()->opinions->count() }}) pour être autorisé à commenter des opinions où vous n'êtes pas nommément cité</p>
+    <p class="small light-blue-text mt-5">Vous n'avez pas encore posté assez d'opinions
+        ({{ Auth::user()->opinions->count() }}) pour être autorisé à commenter des opinions où vous n'êtes pas nommément
+        cité</p>
     @endcannot
 @endsection
