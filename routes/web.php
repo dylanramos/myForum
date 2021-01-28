@@ -31,7 +31,11 @@ Route::middleware('auth')->group(function () {
     Route::Resource('states', StateController::class);
     Route::Resource('themes', ThemeController::class);
     Route::Resource('topics', TopicController::class);
-    Route::Get('users', [UserController::class, 'index'])->name('users')->middleware('admin');
+    
+    Route::middleware('admin')->group(function () {
+        Route::Get('users', [UserController::class, 'index'])->name('users');
+        Route::Get('users/addadmin', [UserController::class, 'addAdmin'])->name('addadmin');
+    });
 });
 
 
