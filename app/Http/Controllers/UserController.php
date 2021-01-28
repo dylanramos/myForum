@@ -24,4 +24,8 @@ class UserController extends Controller
 
         return view ('users.index')->with(compact('users', 'adminsNumber'));
     }
+
+    public function addAdmin($id) {
+        
+    }
 }
