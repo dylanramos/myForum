@@ -30,7 +30,9 @@
         <li class="nav-item"><a href="{{ route('roles.index') }}" class="btn">Gestion des rôles</a></li>
         <li class="nav-item"><a href="{{ route('states.index') }}" class="btn">Gestion des états</a></li>
         <li class="nav-item"><a href="" class="btn">Modération</a></li>
-        <li class="nav-item"><a href="{{ route('users') }}" class="btn">Utilisateurs</a></li>
+        @if (Auth::user()->role->slug == 'ADMI')
+            <li class="nav-item"><a href="{{ route('users') }}" class="btn">Utilisateurs</a></li>
+        @endif
     </ul>
 </nav>
 @if ($message = Session::get('message'))
