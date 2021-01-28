@@ -18,6 +18,13 @@
                 <td>{{ $user->last_name }}</td>
                 <td>{{ $user->pseudo }}</td>
                 <td>{{ $user->role->name }}</td>
+                <td>
+                    @if ($adminsNumber < 5 && $user->role->slug != 'ADMI')
+                        <a href="" class="btn">Nommer admin</a>
+                    @elseif ($user->role->slug == 'ADMI')
+                        <a href="" class="btn">Déstituer</a>
+                    @endif
+                </td>
             </tr>
         
         @empty
